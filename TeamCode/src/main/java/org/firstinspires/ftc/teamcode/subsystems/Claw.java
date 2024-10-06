@@ -1,22 +1,20 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Claw {
     private Servo clawServo;
-    public static double openPosition = 0;
-    public static double closedPosition = 0;
-
 
     public Claw(Servo clawServo) {
         this.clawServo = clawServo;
     }
 
-    public void openClaw() {
+    public void openClaw(double openPosition) {
         clawServo.setPosition(openPosition);
     }
 
-    public void closeClaw() {
+    public void closeClaw(double closedPosition) {
         clawServo.setPosition(closedPosition);
     }
 

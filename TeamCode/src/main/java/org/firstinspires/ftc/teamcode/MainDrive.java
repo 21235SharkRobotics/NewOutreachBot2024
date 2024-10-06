@@ -29,6 +29,7 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -37,6 +38,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.subsystems.Robot;
 
+@Config
 @TeleOp(name="MainDrive")
 public class MainDrive extends OpMode
 {
@@ -45,6 +47,14 @@ public class MainDrive extends OpMode
     private DcMotorEx LB;
     private DcMotorEx RF;
     private DcMotorEx RB;
+
+    public static double openPosition = 0.1;
+    public static double closedPosition = 0.3;
+
+    public static double leftUpPos = 0;
+    public static double rightUpPos = 0.075;
+    public static double leftDownPos = 0;
+    public static double rightDownPos = 0;
 
     private Robot robot;
 
@@ -76,6 +86,7 @@ public class MainDrive extends OpMode
      */
     @Override
     public void start() {
+
     }
 
     /*
@@ -94,29 +105,29 @@ public class MainDrive extends OpMode
         double backRightPower = (y + x - rx) / denominator;
 
         if (gamepad1.right_bumper) {
-            robot.claw.closeClaw();
+            robot.claw.closeClaw(closedPosition);
         }
 
         if (gamepad1.left_bumper) {
-            robot.claw.openClaw();
+            robot.claw.openClaw(openPosition);
         }
 
         if (gamepad1.y) {
-            robot.elevator.upPosition();
+            robot.elevator.upPosition(leftUpPos, rightUpPos);
         }
 
         if (gamepad1.a) {
-            robot.elevator.downPosition();
+            robot.elevator.downPosition(leftDownPos, rightDownPos);
         }
 
-        LF.setPower(frontLeftPower);
-        LB.setPower(backLeftPower);
-        RF.setPower(frontRightPower);
-        RB.setPower(backRightPower);
+        //LF.setPower(frontLeftPower);
+        //LB.setPower(backLeftPower);
+        //RF.setPower(frontRightPower);
+        //RB.setPower(backRightPower);
 
         telemetry.addData("Claw Position", robot.claw.returnPosition());
-        telemetry.addData("Left Position", (robot.elevator.returnPosition())[0]);
-        telemetry.addData("Left Position", (robot.elevator.returnPosition())[1]);
+        telemetry.addData("Left Position", robot.elevator.leftPosition());
+        telemetry.addData("Right Position", robot.elevator.rightPosition());
         telemetry.update();
     }
 
