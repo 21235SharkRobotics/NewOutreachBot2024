@@ -52,7 +52,7 @@ public class MainDrive extends OpMode
     public static double closedPosition = 0.3;
 
     public static double leftUpPos = 0;
-    public static double rightUpPos = 0.075;
+    public static double rightUpPos = 0;
     public static double leftDownPos = 0;
     public static double rightDownPos = 0;
 
@@ -114,6 +114,7 @@ public class MainDrive extends OpMode
 
         if (gamepad1.y) {
             robot.elevator.upPosition(leftUpPos, rightUpPos);
+
         }
 
         if (gamepad1.a) {
@@ -128,6 +129,8 @@ public class MainDrive extends OpMode
         telemetry.addData("Claw Position", robot.claw.returnPosition());
         telemetry.addData("Left Position", robot.elevator.leftPosition());
         telemetry.addData("Right Position", robot.elevator.rightPosition());
+        telemetry.addData("Y", gamepad1.y);
+        telemetry.addData("A", gamepad1.a);
         telemetry.update();
     }
 

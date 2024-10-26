@@ -8,6 +8,7 @@ public class Claw {
 
     public Claw(Servo clawServo) {
         this.clawServo = clawServo;
+
     }
 
     public void openClaw(double openPosition) {

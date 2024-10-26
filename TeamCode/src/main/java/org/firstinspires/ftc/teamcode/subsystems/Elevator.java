@@ -15,17 +15,25 @@ public class Elevator {
         this.rightServo = rightServo;
 
         this.leftServo.setDirection(Servo.Direction.REVERSE);
+
     }
 
     public void upPosition(double leftUpPos, double rightUpPos) {
-        //leftServo.setPosition(leftUpPos);
+        leftServo.setPosition(leftUpPos);
         rightServo.setPosition(rightUpPos);
     }
 
     public void downPosition(double leftDownPos, double rightDownPos) {
-        //leftServo.setPosition(leftDownPos);
+        leftServo.setPosition(leftDownPos);
         rightServo.setPosition(rightDownPos);
     }
+
+    public void leftUpPosition(double leftUpPos) { leftServo.setPosition(leftUpPos); }
+    public void rightUpPosition(double rightUpPos) { rightServo.setPosition(rightUpPos); }
+
+    public void leftDownPosition(double leftDownPos) { leftServo.setPosition(leftDownPos); }
+    public void rightDownPosition(double rightDownPos) { rightServo.setPosition(rightDownPos); }
+
 
     public double leftPosition() {
         return leftServo.getPosition();
